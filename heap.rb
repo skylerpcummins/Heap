@@ -50,6 +50,18 @@ class Heap
   end
 
   def heapify_down!
+    i = 0
+    while true
+      small = children_idx(i).min_by { |idx| @store[idx] }
+      break if small.nil?
+
+      if @store[i] > @store[small]
+        swap(i, small)
+        i = small
+      else
+        break
+      end
+    end
   end
 
 end
