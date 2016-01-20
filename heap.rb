@@ -65,4 +65,36 @@ class Heap
     end
   end
 
+  def heap_sort!
+    heapify!
+    unheapify!
+    reverse!
+  end
+
+end
+
+class Array
+  def heapify!
+    len = 1
+    while len < self.length
+      current = len
+      len += 1
+      parent = parent_idx(current)
+
+      while self[current] < self[parent]
+        # would need to write swap for array class
+        swap!(current, parent)
+        current = parent
+        parent = parent_idx(current)
+      end
+    end
+  end
+
+  def parent_idx(i)
+    i == 0 ? nil : (i-1)/2
+  end
+
+  def children_idx(i, len)
+    [2*i + 1, 2*i + 2].select { |idx| idx < len }
+  end
 end
