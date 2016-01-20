@@ -52,6 +52,7 @@ class Heap
   def heapify_down!
     i = 0
     while true
+      # small will be @store[idx] here, which is broken - we want the actual idx
       small = children_idx(i).min_by { |idx| @store[idx] }
       break if small.nil?
 
